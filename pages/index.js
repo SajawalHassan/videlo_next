@@ -6,24 +6,37 @@ import { useEffect, useState } from "react";
 import {
   BellIcon,
   CameraIcon,
+  CogIcon,
+  MicrophoneIcon,
+  MoonIcon,
+  PencilAltIcon,
+  PlayIcon,
+  QuestionMarkCircleIcon,
+  RssIcon,
   SearchIcon,
+  UserAddIcon,
   UserIcon,
+  VideoCameraIcon,
   XIcon,
 } from "@heroicons/react/outline";
-import Link from "next/link";
 import InputField from "../components/InputField";
 import MenuLayout from "../components/layouts/MenuLayout";
+import MenuOption from "../components/MenuOption";
+import Link from "next/link";
 
 export default withPageAuthRequired(function Home() {
   const [search, setSearch] = useState(false);
   const [notification, setNotification] = useState(false);
   const [profile, setProfile] = useState(false);
-  const [camera, setCamera] = useState(false);
+  const [videoOptions, setVideoOptions] = useState(false);
+  const [micMenu, setMicMenu] = useState(false);
 
   const { user, error, isLoading } = useUser();
 
+  const [searchField, setSearchField] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [inputField, setInputField] = useState("");
+  console.log(search);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
@@ -47,6 +60,26 @@ export default withPageAuthRequired(function Home() {
     return <h1>{error}</h1>;
   };
 
+  const convert = () => {
+    const speech = true;
+    // Set window.SpeechRecognition to webkit.SpeechRecognition so it works on safari
+    window.SpeechRecognition = window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    // convert voice to text
+    recognition.interimResults = true;
+
+    recognition.addEventListener("result", (e) => {
+      const translation = Array.from(e.results)
+        .map((res) => res[0])
+        .map((res) => res.transcript);
+
+      setSearchField(translation);
+    });
+    if (speech === true) {
+      recognition.start();
+    }
+  };
+
   return (
     <div className="bg-background-color h-screen w-screen">
       <Head>
@@ -64,21 +97,113 @@ export default withPageAuthRequired(function Home() {
                 {countryCode}
               </h1>
             </div>
+            <div className="hidden sm:flex sm:flex-[0.8] xl:flex-[0.6] 2xl:flex-[0.4]">
+              <InputField
+                Icon={SearchIcon}
+                placeholder="Search Videlo"
+                value={searchField}
+                setValue={setSearchField}
+                type="text"
+                className="rounded-tr-none rounded-br-none"
+              />
+              <div
+                className="p-2 bg-zinc-800 w-16 flex justify-center cursor-pointer active:bg-zinc-900 transition-all duration-200"
+                onClick={() => {
+                  setMicMenu(true);
+                  convert();
+                }}
+              >
+                <MicrophoneIcon className="h-6 text-white" />
+              </div>
+
+              {micMenu && (
+                <MenuLayout
+                  headerText="Record your voice"
+                  setMenu={setMicMenu}
+                  className="fixed inset-x-0 mx-auto w-[500px] top-[50px] h-[500px]"
+                >
+                  <div className="p-5 bg-red-500 rounded-full">
+                    <MicrophoneIcon className="h-20 text-white" />
+                  </div>
+                </MenuLayout>
+              )}
+            </div>
             <div className="flex items-center space-x-2">
-              <IconButton Icon={SearchIcon} onClick={() => setSearch(true)} />
-              <IconButton Icon={CameraIcon} onClick={() => setCamera(true)} />
+              <IconButton
+                Icon={SearchIcon}
+                onClick={() => setSearch(true)}
+                className="sm:hidden"
+              />
+              <IconButton
+                Icon={CameraIcon}
+                onClick={() => setVideoOptions(!videoOptions)}
+              />
               <IconButton
                 Icon={BellIcon}
-                onClick={() => setNotification(true)}
+                onClick={() => setNotification(!notification)}
               />
               <IconButton Icon={UserIcon} onClick={() => setProfile(true)} />
             </div>
+            {videoOptions && (
+              <MenuLayout
+                setMenu={setVideoOptions}
+                className="fixed right-24 top-[50px] w-[240px] h-[170px]"
+                headerText="Create Videos"
+              >
+                <MenuOption
+                  Icon={VideoCameraIcon}
+                  text="Upload Video"
+                  className="mt-10"
+                />
+                <MenuOption Icon={RssIcon} text="Go Live" />
+              </MenuLayout>
+            )}
             {notification && (
               <MenuLayout
                 setMenu={setNotification}
-                className="fixed right-14 top-14"
+                className="fixed right-12 top-[50px] w-[290px] h-[411px]"
+                headerText="Notifications"
               >
-                <h1>Hello</h1>
+                <h1 className="text-[25px] text-white font-[700] text-center">
+                  There aren't any notifications here
+                </h1>
+                <img
+                  src="/person_in_bush.png"
+                  alt="person in bush"
+                  loading="lazy"
+                  className="translate-x-4"
+                />
+              </MenuLayout>
+            )}
+            {profile && (
+              <MenuLayout
+                setMenu={setProfile}
+                className="fixed right-2 top-[50px] w-[290px] h-[480px]"
+                headerText="Profile"
+              >
+                <div className="w-full bg-[#454545] h-max rounded-md flex items-center space-x-3 mb-5">
+                  <img
+                    src={user.picture}
+                    alt="Profile pic"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    className="h-16 rounded-tl-md rounded-bl-md"
+                  />
+                  <div className="overflow-x-hidden">
+                    <h1 className="truncate font-bold text-white text-lg">
+                      {user?.name}
+                    </h1>
+                    <p className="px-2 py-1 bg-[#656565] text-white rounded-sm font-bold text-xs w-max">
+                      <Link href="/api/auth/logout">Sign out</Link>
+                    </p>
+                  </div>
+                </div>
+                <MenuOption Icon={PlayIcon} text="Your channel" />
+                <MenuOption Icon={MoonIcon} text="Appereance: Dark" />
+                <MenuOption Icon={CogIcon} text="Settings" />
+                <MenuOption Icon={QuestionMarkCircleIcon} text="Help" />
+                <MenuOption Icon={PencilAltIcon} text="Send feedback" />
+                <MenuOption Icon={UserAddIcon} text="Add more accounts" />
               </MenuLayout>
             )}
           </div>
