@@ -9,6 +9,9 @@
   .section {
     @apply bg-[#2b2b2b] rounded-lg p-3;
   }
+  .seperator {
+    @apply border-b-2 border-zinc-700;
+  }
 }
 
 .scrollbar::-webkit-scrollbar {
@@ -27,4 +30,17 @@
 .scrollbar::-webkit-scrollbar-thumb:hover {
   border-radius: 99999px;
   background: rgb(109, 109, 109);
+}
+
+.sidebar-animation {
+  animation: sidebar-animation 0.4s ease-in-out;
+}
+
+@keyframes sidebar-animation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

@@ -6,11 +6,17 @@ import { useEffect, useState } from "react";
 import {
   BellIcon,
   CameraIcon,
+  CheckCircleIcon,
+  CheckIcon,
+  ChevronLeftIcon,
   ChevronRightIcon,
+  ClockIcon,
   CogIcon,
+  HomeIcon,
   MicrophoneIcon,
   MoonIcon,
   PencilAltIcon,
+  PhotographIcon,
   PlayIcon,
   QuestionMarkCircleIcon,
   RssIcon,
@@ -25,6 +31,8 @@ import MenuLayout from "../components/layouts/MenuLayout";
 import MenuOption from "../components/MenuOption";
 import Link from "next/link";
 import VideoCard from "../components/VideoCard";
+import SidebarOption from "../components/SidebarOption";
+import Image from "next/image";
 
 export default withPageAuthRequired(function Home() {
   const [search, setSearch] = useState(false);
@@ -32,6 +40,7 @@ export default withPageAuthRequired(function Home() {
   const [profile, setProfile] = useState(false);
   const [videoOptions, setVideoOptions] = useState(false);
   const [micMenu, setMicMenu] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
 
   const { user, error, isLoading } = useUser();
 
@@ -223,10 +232,44 @@ export default withPageAuthRequired(function Home() {
       </header>
 
       <div className="my-4 h-[88%]">
-        <div className="section flex items-center my-3 text-white space-x-2 cursor-pointer active:bg-[#313131] transition-colors duration-300">
+        <div
+          className="section flex items-center my-3 text-white space-x-2 cursor-pointer active:bg-[#313131] transition-colors duration-300"
+          onClick={() => setSidebar(true)}
+        >
           <ChevronRightIcon className="h-6" />
           <h1>Open Sidebar</h1>
         </div>
+        {sidebar && (
+          <div className="fixed w-screen h-screen top-0 left-0 rounded-none section z-50 text-white sidebar-animation">
+            <IconButton
+              Icon={ChevronLeftIcon}
+              onClick={() => setSidebar(false)}
+              className="absolute right-5 top-5"
+            />
+            <div className="space-y-2 flex flex-col justify-center h-full">
+              <SidebarOption Icon={HomeIcon} text="Home" />
+              <SidebarOption Icon={CheckIcon} text="Subscription" />
+              <SidebarOption Icon={VideoCameraIcon} text="My Videos" />
+              <div className="seperator"></div>
+              <SidebarOption Icon={ClockIcon} text="Watch Later" />
+              <SidebarOption Icon={CheckCircleIcon} text="Liked Videos" />
+              <SidebarOption Icon={PhotographIcon} text="Playlists" />
+              <div className="seperator"></div>
+              <div className="max-w-[20rem] mx-auto text-center">
+                <img
+                  src="/videlo.png"
+                  alt="logo"
+                  className="object-contain w-28 mx-auto mt-5 mb-3"
+                />
+                <p className="text-xs">
+                  Videlo is an online video sharing website and social media
+                  platform
+                </p>
+                <p className="text-sm text-black mt-5">Videlo © 2022</p>
+              </div>
+            </div>
+          </div>
+        )}
         <main className="section h-[98%] w-full overflow-y-auto gap-5 xl:gap-8 flex flex-wrap justify-center scrollbar">
           <VideoCard
             title="First video on Videlo"
