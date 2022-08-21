@@ -23,7 +23,7 @@ export default function MenuLayout({
           <IconButton
             Icon={XIcon}
             onClick={() => setMenu(false)}
-            className="rounded-md"
+            className="rounded-lg"
           />
           <h1 className="text-white text-end text-xl ">{headerText}</h1>
         </div>

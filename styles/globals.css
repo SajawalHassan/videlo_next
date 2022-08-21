@@ -6,4 +6,25 @@
   .auth-btn {
     @apply p-2 bg-blue-500 rounded-md text-white font-bold;
   }
+  .section {
+    @apply bg-[#2b2b2b] rounded-lg p-3;
+  }
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 99999px;
+  background: #888;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  border-radius: 99999px;
+  background: rgb(109, 109, 109);
 }

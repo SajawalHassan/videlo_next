@@ -7,12 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "background-color": "#3F3F3F",
+        "background-color": "#202020",
         "bo-color": "#383838",
-        "icon-bg-color": "#8B8B8B",
-        "icon-bg-hover-color": "#686868",
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
