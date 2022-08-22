@@ -32,7 +32,6 @@ import MenuOption from "../components/MenuOption";
 import Link from "next/link";
 import VideoCard from "../components/VideoCard";
 import SidebarOption from "../components/SidebarOption";
-import Image from "next/image";
 
 export default withPageAuthRequired(function Home() {
   const [search, setSearch] = useState(false);
@@ -240,32 +239,40 @@ export default withPageAuthRequired(function Home() {
           <h1>Open Sidebar</h1>
         </div>
         {sidebar && (
-          <div className="fixed w-screen h-screen top-0 left-0 rounded-none section z-50 text-white sidebar-animation">
-            <IconButton
-              Icon={ChevronLeftIcon}
-              onClick={() => setSidebar(false)}
-              className="absolute right-5 top-5"
-            />
-            <div className="space-y-2 flex flex-col justify-center h-full">
-              <SidebarOption Icon={HomeIcon} text="Home" />
-              <SidebarOption Icon={CheckIcon} text="Subscription" />
-              <SidebarOption Icon={VideoCameraIcon} text="My Videos" />
-              <div className="seperator"></div>
-              <SidebarOption Icon={ClockIcon} text="Watch Later" />
-              <SidebarOption Icon={CheckCircleIcon} text="Liked Videos" />
-              <SidebarOption Icon={PhotographIcon} text="Playlists" />
-              <div className="seperator"></div>
-              <div className="max-w-[20rem] mx-auto text-center">
-                <img
-                  src="/videlo.png"
-                  alt="logo"
-                  className="object-contain w-28 mx-auto mt-5 mb-3"
-                />
-                <p className="text-xs">
-                  Videlo is an online video sharing website and social media
-                  platform
-                </p>
-                <p className="text-sm text-black mt-5">Videlo © 2022</p>
+          <div className="fixed w-full h-screen top-0 left-0 z-50 text-white bg-black bg-opacity-50 transition-opacity duration-300">
+            <div className="rounded-none section w-[20rem] sidebar-animation h-full relative">
+              <IconButton
+                Icon={ChevronLeftIcon}
+                onClick={() => setSidebar(false)}
+                className="absolute right-5 top-5"
+              />
+              <img
+                src="/videlo.png"
+                alt="Logo"
+                loading="lazy"
+                className="absolute top-32 inset-x-0 mx-auto w-28"
+              />
+              <div className="space-y-2 flex flex-col justify-center h-full">
+                <SidebarOption Icon={HomeIcon} text="Home" />
+                <SidebarOption Icon={CheckIcon} text="Subscription" />
+                <SidebarOption Icon={VideoCameraIcon} text="My Videos" />
+                <div className="seperator"></div>
+                <SidebarOption Icon={ClockIcon} text="Watch Later" />
+                <SidebarOption Icon={CheckCircleIcon} text="Liked Videos" />
+                <SidebarOption Icon={PhotographIcon} text="Playlists" />
+                <div className="seperator"></div>
+                <div className="max-w-[20rem] mx-auto text-center">
+                  <img
+                    src="/videlo.png"
+                    alt="logo"
+                    className="object-contain w-28 mx-auto mt-5 mb-3"
+                  />
+                  <p className="text-xs">
+                    Videlo is an online video sharing website and social media
+                    platform
+                  </p>
+                  <p className="text-sm text-black mt-5">Videlo © 2022</p>
+                </div>
               </div>
             </div>
           </div>
@@ -278,6 +285,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="Second video on Videlo wow so amazing it's amazing wow"
@@ -286,6 +295,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/_MLMuvZFbIE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDJ3KhLB2rl7p2FV2heHOwc21v1vg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -294,6 +305,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/QZbJOBZqKnM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBuhL_cZh2iixpxdzYZ3m7cQpe0Cw"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -302,6 +315,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/e4zT0dJnEVQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBrRoaY_SYiuIm2D_wDllGHmnC-gw"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -310,6 +325,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/edzt82nC45k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA0sC5BoNG5Qr4wHd1LvvMmbsUtzA"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -318,6 +335,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/eYaSNZRbFsA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCu_sYmMfv8kHY8TrWwR7zGw2oH-w"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -326,6 +345,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/iomtX7cg7sE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCYWMic5oztTFhHLd_zL79TU55hFA"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -334,6 +355,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -342,6 +365,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -350,6 +375,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -358,6 +385,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -366,6 +395,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -374,6 +405,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -382,6 +415,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -390,6 +425,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -398,6 +435,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -406,6 +445,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -414,6 +455,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -422,6 +465,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -430,6 +475,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -438,6 +485,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -446,6 +495,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -454,6 +505,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -462,6 +515,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
           <VideoCard
             title="First video on Videlo"
@@ -470,6 +525,8 @@ export default withPageAuthRequired(function Home() {
             createdAt="20 Aug 22"
             views="12M"
             thumbnail="https://i.ytimg.com/vi/2KuabuIBc9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARwNmUNKt2Eizd2_QUdKs7LGu_eg"
+            likes="12M"
+            dislikes="1M"
           />
         </main>
       </div>
